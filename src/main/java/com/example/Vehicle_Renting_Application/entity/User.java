@@ -8,6 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -18,6 +20,9 @@ public class User {
 	private String email;
 	private String phoneNumber;
 	private String password;
+	
+	@OneToOne
+	private Image profilePicture;
 
 	@Enumerated(EnumType.STRING)
 	private UserRole userRole;
@@ -69,6 +74,14 @@ public class User {
 
 	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
+	}
+
+	public Image getProfilePicture() {
+		return profilePicture;
+	}
+
+	public void setProfilePicture(Image profilePicture) {
+		this.profilePicture = profilePicture;
 	}
 
 	

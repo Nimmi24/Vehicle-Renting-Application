@@ -30,7 +30,7 @@ public class ErrorStructure {
 		this.rootCause = rootCause;
 	}
 
-	public ErrorStructure create(int status, String message, String rootCause) {
+	public static ErrorStructure create(int status, String message, String rootCause) {
 		ErrorStructure errorStructure = new ErrorStructure();
 		errorStructure.setStatus(status);
 		errorStructure.setMessage(message);
