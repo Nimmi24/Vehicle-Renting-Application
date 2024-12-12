@@ -34,12 +34,4 @@ public class UserController {
 				.body(ResponseStructure.create(HttpStatus.CREATED.value(), "User Created", user));
 
 	}
-	@PostMapping("/user-profile-picture")
-	public ResponseEntity<SimpleResponseStructure> addProfilePicture(
-			@RequestParam("userId")int userId,
-			@RequestParam("file")MultipartFile file)throws IOException {
-		userService.addUserProfilePicture(userId,file);
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(SimpleResponseStructure.create(HttpStatus.OK.value(), "Profile Picture added"));
-	}
 }
