@@ -24,4 +24,11 @@ class ApplicationExceptionHandler {
 
 		}
 
+		@ExceptionHandler
+		public ResponseEntity<ErrorStructure> handleImageNotFoundByIdException(ImageNotFoundByIdException ex) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorStructure.create(HttpStatus.NOT_FOUND.value(),
+					ex.getMessage(), "failed to find the image"));
+
+		}
+		
 }

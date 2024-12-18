@@ -13,16 +13,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Vehicle_Renting_Application.entity.Image;
 import com.example.Vehicle_Renting_Application.service.ImageService;
-import com.example.Vehicle_Renting_Application.service.UserService;
 import com.example.Vehicle_Renting_Application.util.SimpleResponseStructure;
 
 @RestController
 public class ImageController {
-	
+
 	private final ImageService imageService;
-	
-	
-	
+
+
+
 	public ImageController(ImageService imageService) {
 		super();
 		this.imageService = imageService;
@@ -38,15 +37,15 @@ public class ImageController {
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(SimpleResponseStructure.create(HttpStatus.OK.value(), "Profile Picture added"));
 	}
-	
-	@GetMapping("/find/imageById")
-	public ResponseEntity<byte[]> findImageById(@RequestParam int imageId){
-		
+
+	@GetMapping("/find/image-By-Id")
+	public ResponseEntity<byte[]> findImageById(@RequestParam("image-id") int imageId){
+
 		Image image = imageService.findImageById(imageId);
 		return ResponseEntity.status(HttpStatus.OK)
-				              .contentType(MediaType.valueOf(image.getContentType()))
-				              .body(image.getImageByte());
-				             
+				.contentType(MediaType.valueOf(image.getContentType()))
+				.body(image.getImageByte());
+
 	}
-	
+
 }

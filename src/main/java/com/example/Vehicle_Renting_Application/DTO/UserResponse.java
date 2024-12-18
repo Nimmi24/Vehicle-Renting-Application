@@ -1,33 +1,18 @@
-package com.example.Vehicle_Renting_Application.entity;
+package com.example.Vehicle_Renting_Application.DTO;
 
 import com.example.Vehicle_Renting_Application.enums.UserRole;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+public class UserResponse {
 
-import jakarta.persistence.OneToOne;
-
-@Entity
-public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 	private String userName;
 	private String email;
 	private String phoneNumber;
-	private String password;
-	
-	@OneToOne
-	private Image profilePicture;
+	private String profilePicture;
 
-	@Enumerated(EnumType.STRING)
+
 	private UserRole userRole;
 
-	
 	public int getUserId() {
 		return userId;
 	}
@@ -60,14 +45,6 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public UserRole getUserRole() {
 		return userRole;
 	}
@@ -76,14 +53,13 @@ public class User {
 		this.userRole = userRole;
 	}
 
-	public Image getProfilePicture() {
+	public String getProfilePicture() {
 		return profilePicture;
 	}
 
-	public void setProfilePicture(Image profilePicture) {
+	public void setProfilePicture(String profilePicture) {
 		this.profilePicture = profilePicture;
 	}
 
-	
 
 }
