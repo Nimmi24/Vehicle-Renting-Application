@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.service.annotation.PutExchange;
 
 import com.example.Vehicle_Renting_Application.DTO.UserRequest;
 import com.example.Vehicle_Renting_Application.DTO.UserResponse;
@@ -29,9 +28,9 @@ public class UserController {
 	
 	@GetMapping("/find-User")
 	public ResponseEntity<ResponseStructure<UserResponse>> findUser(@RequestParam int userId) {
-		UserResponse Response = userService.findUser(userId);
+		UserResponse userResponse = userService.findUser(userId);
 		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(ResponseStructure.create(HttpStatus.CREATED.value(), "User Not Found", Response));
+				.body(ResponseStructure.create(HttpStatus.CREATED.value(), "User Not Found", userResponse));
 
 	}
 
