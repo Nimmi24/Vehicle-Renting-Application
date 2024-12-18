@@ -53,6 +53,7 @@ public class UserService {
 		user.setUserRole(role);
 		User savedUser = userRepository.save(user);		
 		return userMapper.mapToResponse(savedUser);
+		
 	}
 
 }
