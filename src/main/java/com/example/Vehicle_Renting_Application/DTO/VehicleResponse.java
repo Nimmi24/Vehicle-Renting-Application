@@ -1,4 +1,3 @@
- 
 package com.example.Vehicle_Renting_Application.DTO;
 
 import com.example.Vehicle_Renting_Application.enums.FuelType;
@@ -10,7 +9,7 @@ public class VehicleResponse {
 	private String brand;
 	private String model;
 	private VehicleType vehicleType;
-	private FuelType fuelType;
+	private FuelType fuleType;
 
 	public int getVehicleId() {
 		return vehicleId;
@@ -45,10 +44,10 @@ public class VehicleResponse {
 	}
 
 	public FuelType getFuelType() {
-		return fuelType;
+		return fuleType;
 	}
 
-	public void setFuelType(FuelType fuelType) {
-		this.fuelType = fuelType;
+	public void setFuelType(FuelType fuleType) {
+		this.fuleType = fuleType;
 	}
 }

@@ -2,37 +2,39 @@ package com.example.Vehicle_Renting_Application.Mapper;
 
 import org.springframework.stereotype.Component;
 
+import com.example.Vehicle_Renting_Application.entity.User;
 import com.example.Vehicle_Renting_Application.DTO.UserRequest;
 import com.example.Vehicle_Renting_Application.DTO.UserResponse;
-import com.example.Vehicle_Renting_Application.entity.User;
 
 @Component
 public class UserMapper {
 
-	public User mapToUser(UserRequest request, User user) {
-		
-		
-		user.setUserName(request.getUserName());
-		user.setEmail(request.getEmail());
-		user.setPhoneNumber(request.getPhoneNumber());
-		user.setPassword(request.getPassword());
-		
-		
-		return user;
-	}
+    public User mapToUser(UserRequest userRequest, User user) {
+        if (userRequest.getUsername() != null) {
+            user.setUsername(userRequest.getUsername());
+        }
+        if (userRequest.getEmail() != null) {
+            user.setEmail(userRequest.getEmail());
+        }
+        if (userRequest.getPhoneNumber() != null) {
+            user.setPhoneNumber(userRequest.getPhoneNumber());
+        }
+        if (userRequest.getPassword() != null) {
+            user.setPassword(userRequest.getPassword());
+        }
+        return user;
+    }
 
-	public UserResponse mapToResponse(User user) {
-		
-		UserResponse response = new UserResponse();
-		response.setUserName(user.getUserName());
-		response.setEmail(user.getEmail());
-		response.setPhoneNumber(user.getPhoneNumber());
-		response.setUserRole(user.getUserRole());
-		response.setUserId(user.getUserId());
-		
-		return response;
-
-	}
-	
-
+    public UserResponse mapToResponse(User user) {
+        UserResponse response = new UserResponse();
+        response.setUserId(user.getUserId());
+        response.setUsername(user.getUsername());
+        response.setEmail(user.getEmail());
+        response.setPhoneNumber(user.getPhoneNumber());
+        response.setRole(user.getRole());
+      
+        return response;
+    }
 }
+
+

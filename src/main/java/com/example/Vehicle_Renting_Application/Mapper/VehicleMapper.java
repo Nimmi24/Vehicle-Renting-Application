@@ -1,12 +1,10 @@
- 
 package com.example.Vehicle_Renting_Application.Mapper;
 
 import org.springframework.stereotype.Component;
 
+import com.example.Vehicle_Renting_Application.entity.Vehicle;
 import com.example.Vehicle_Renting_Application.DTO.VehicleRequest;
 import com.example.Vehicle_Renting_Application.DTO.VehicleResponse;
-import com.example.Vehicle_Renting_Application.entity.Vehicle;
-
 
 @Component
 public class VehicleMapper {
@@ -22,7 +20,7 @@ public class VehicleMapper {
 			vehicle.setVehicleType(vehicleRequest.getVehicleType());
 		}
 		if (vehicleRequest.getFuelType() != null) {
-			vehicle.setFuelType(vehicleRequest.getFuelType());
+			vehicle.setFuleType(vehicleRequest.getFuelType());
 		}
 		return vehicle;
 	}
@@ -33,7 +31,7 @@ public class VehicleMapper {
 		response.setBrand(vehicle.getBrand());
 		response.setModel(vehicle.getModel());
 		response.setVehicleType(vehicle.getVehicleType());
-		response.setFuelType(vehicle.getFuelType());
+		response.setFuelType(vehicle.getFuleType());
 		return response;
 	}
 }

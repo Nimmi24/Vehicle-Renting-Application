@@ -31,12 +31,11 @@ public class ErrorStructure {
 	}
 
 	public static ErrorStructure create(int status, String message, String rootCause) {
-		ErrorStructure errorStructure = new ErrorStructure();
-		errorStructure.setStatus(status);
-		errorStructure.setMessage(message);
-		errorStructure.setRootCause(rootCause);
-		
-		return errorStructure;
-	}
+		ErrorStructure error = new ErrorStructure();
+		error.setStatus(status);
+		error.setMessage(message);
+		error.setRootCause(rootCause);
 
+		return error;
+	}
 }

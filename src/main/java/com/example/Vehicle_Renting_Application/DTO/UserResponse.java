@@ -5,13 +5,24 @@ import com.example.Vehicle_Renting_Application.enums.UserRole;
 public class UserResponse {
 
 	private int userId;
-	private String userName;
+
+	private String username;
+
 	private String email;
+
 	private String phoneNumber;
-	private String profilePicture;
 
+	private UserRole role;
 
-	private UserRole userRole;
+	private String profilePictureLink;
+
+	public String getProfilePictureLink() {
+		return profilePictureLink;
+	}
+
+	public void setProfilePictureLink(String profilePictureLink) {
+		this.profilePictureLink = profilePictureLink;
+	}
 
 	public int getUserId() {
 		return userId;
@@ -21,12 +32,12 @@ public class UserResponse {
 		this.userId = userId;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getEmail() {
@@ -45,21 +56,12 @@ public class UserResponse {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public UserRole getUserRole() {
-		return userRole;
+	public UserRole getRole() {
+		return role;
 	}
 
-	public void setUserRole(UserRole userRole) {
-		this.userRole = userRole;
+	public void setRole(UserRole role) {
+		this.role = role;
 	}
-
-	public String getProfilePicture() {
-		return profilePicture;
-	}
-
-	public void setProfilePicture(String profilePicture) {
-		this.profilePicture = profilePicture;
-	}
-
 
 }

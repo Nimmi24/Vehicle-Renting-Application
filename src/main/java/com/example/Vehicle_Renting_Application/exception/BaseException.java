@@ -1,19 +1,16 @@
 package com.example.Vehicle_Renting_Application.exception;
 
-public class BaseException extends RuntimeException{
+public class BaseException extends RuntimeException {
 	
-	private final String mesage;
+	private final String message;
 
-	public BaseException(String mesage) {
+	public BaseException(String message) {
 		super();
-		this.mesage = mesage;
+		this.message = message;
 	}
 
-	public String getMesage() {
-		return mesage;
+	public String getMessage() {
+		return message;
 	}
-	
-	
-	
 
 }
