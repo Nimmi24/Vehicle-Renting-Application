@@ -1,6 +1,7 @@
 package com.example.Vehicle_Renting_Application.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,35 +18,32 @@ import com.example.Vehicle_Renting_Application.util.SimpleResponseStructure;
 
 @RestController
 public class ImageController {
-
 	private final ImageService imageService;
 
-
-
 	public ImageController(ImageService imageService) {
-		super();
 		this.imageService = imageService;
 	}
 
-
-
-	@PostMapping("/user-profile-picture")
-	public ResponseEntity<SimpleResponseStructure> addProfilePicture(
-			@RequestParam("userId")int userId,
-			@RequestParam("file")MultipartFile file)throws IOException {
-		imageService.addUserProfilePicture(userId,file);
+	@PostMapping("/users/profile-picture")
+	public ResponseEntity<SimpleResponseStructure> addProfilePicture(@RequestParam("file") MultipartFile file)
+			throws IOException {
+		imageService.uploadUserProfilePicture(file);
 		return ResponseEntity.status(HttpStatus.OK)
-				.body(SimpleResponseStructure.create(HttpStatus.OK.value(), "Profile Picture added"));
+				.body(SimpleResponseStructure.create(HttpStatus.OK.value(), "Profile picture added successfully"));
 	}
 
-	@GetMapping("/find/image-By-Id")
-	public ResponseEntity<byte[]> findImageById(@RequestParam("image-id") int imageId){
-
-		Image image = imageService.findImageById(imageId);
-		return ResponseEntity.status(HttpStatus.OK)
-				.contentType(MediaType.valueOf(image.getContentType()))
-				.body(image.getImageByte());
-
+	@GetMapping("/find/imageById")
+	public ResponseEntity<byte[]> getProfilePicture() {
+		Image image = imageService.findImageByCurrentUser();
+		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf(image.getContentType()))
+				.body(image.getImageBytes());
 	}
 
+	@PostMapping("vehicle/add-images")
+	public ResponseEntity<SimpleResponseStructure> addImagesToVehicle(@RequestParam("vehicleId") int vehicleId,
+			@RequestParam("files") List<MultipartFile> files) {
+		imageService.addImagesToVehicle(vehicleId, files);
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(SimpleResponseStructure.create(HttpStatus.OK.value(), "Images added to vehicle successfully"));
+	}
 }

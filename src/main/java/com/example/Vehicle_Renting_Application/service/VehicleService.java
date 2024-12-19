@@ -1,16 +1,17 @@
-
 package com.example.Vehicle_Renting_Application.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.Vehicle_Renting_Application.exception.VehicleNotFoundException;
 import com.example.Vehicle_Renting_Application.DTO.VehicleRequest;
 import com.example.Vehicle_Renting_Application.DTO.VehicleResponse;
+import com.example.Vehicle_Renting_Application.entity.Image;
+import com.example.Vehicle_Renting_Application.entity.Vehicle;
 import com.example.Vehicle_Renting_Application.Mapper.VehicleMapper;
 import com.example.Vehicle_Renting_Application.Repository.VehicleRepository;
-import com.example.Vehicle_Renting_Application.entity.Vehicle;
-import com.example.Vehicle_Renting_Application.enums.VehicleType;
-import com.example.Vehicle_Renting_Application.exception.VehicleNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,20 +21,22 @@ public class VehicleService {
 
 	private final VehicleRepository vehicleRepository;
 	private final VehicleMapper vehicleMapper;
+	private final ImageService imageService;
 
-	@Autowired
-	public VehicleService(VehicleRepository vehicleRepository, VehicleMapper vehicleMapper) {
+	public VehicleService(VehicleRepository vehicleRepository, VehicleMapper vehicleMapper, ImageService imageService) {
+		super();
 		this.vehicleRepository = vehicleRepository;
 		this.vehicleMapper = vehicleMapper;
+		this.imageService = imageService;
 	}
 
-	public VehicleResponse register(VehicleRequest request, VehicleType vehicleType) {
-
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public VehicleResponse register(VehicleRequest request) {
 		Vehicle vehicle = new Vehicle();
 		vehicle.setBrand(request.getBrand());
 		vehicle.setModel(request.getModel());
-		vehicle.setVehicleType(vehicleType);
-		vehicle.setFuelType(request.getFuelType());
+		vehicle.setVehicleType(request.getVehicleType());
+		vehicle.setFuleType(request.getFuelType());
 		Vehicle savedVehicle = vehicleRepository.save(vehicle);
 		return vehicleMapper.mapToResponse(savedVehicle);
 	}
@@ -54,13 +57,15 @@ public class VehicleService {
 		return vehicleResponses;
 	}
 
+
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public VehicleResponse updateVehicleById(int vehicleId, VehicleRequest request) {
 
 		Vehicle existingVehicle = vehicleRepository.findById(vehicleId)
-				.orElseThrow(() -> new VehicleNotFoundException("Vehicle Not found"));
+				.orElseThrow(() -> new VehicleNotFoundException("Vehicle not found"));
 		existingVehicle.setBrand(request.getBrand());
 		existingVehicle.setModel(request.getModel());
-		existingVehicle.setFuelType(request.getFuelType());
+		existingVehicle.setFuleType(request.getFuelType());
 
 		Vehicle updatedVehicle = vehicleRepository.save(existingVehicle);
 

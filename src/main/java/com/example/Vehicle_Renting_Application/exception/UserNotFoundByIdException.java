@@ -1,12 +1,14 @@
 package com.example.Vehicle_Renting_Application.exception;
 
-public class UserNotFoundByIdException extends BaseException{
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-	public UserNotFoundByIdException(String mesage) {
-		super(mesage);
-		// TODO Auto-generated constructor stub
+public class UserNotFoundByIdException extends BaseException {
+
+	public UserNotFoundByIdException(String message) {
+		super(message);
+		
 	}
 	
-	
+
 
 }
