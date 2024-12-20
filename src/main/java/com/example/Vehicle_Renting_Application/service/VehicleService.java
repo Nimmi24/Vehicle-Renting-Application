@@ -1,14 +1,11 @@
 package com.example.Vehicle_Renting_Application.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Vehicle_Renting_Application.exception.VehicleNotFoundException;
 import com.example.Vehicle_Renting_Application.DTO.VehicleRequest;
 import com.example.Vehicle_Renting_Application.DTO.VehicleResponse;
-import com.example.Vehicle_Renting_Application.entity.Image;
 import com.example.Vehicle_Renting_Application.entity.Vehicle;
 import com.example.Vehicle_Renting_Application.Mapper.VehicleMapper;
 import com.example.Vehicle_Renting_Application.Repository.VehicleRepository;
@@ -44,7 +41,7 @@ public class VehicleService {
 	public List<VehicleResponse> findAllVehicles() {
 
 		List<Vehicle> vehicles = vehicleRepository.findAll();
-		List<VehicleResponse> vehicleResponses = new ArrayList();
+		List<VehicleResponse> vehicleResponses = new ArrayList<>();
 
 		if (vehicles.isEmpty()) {
 			throw new VehicleNotFoundException("No Vehicles present");
